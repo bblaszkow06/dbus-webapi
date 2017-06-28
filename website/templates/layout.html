@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DBus WebAPI</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </head>
+  <body>
+    <div class=container>
+      <h1>DBus WebAPI</h1>
+      <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+          {% for url, label in g.nav_items %}
+            <li><a href="{{ url }}">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% for message in get_flashed_messages() %}
+      <div class=bg-info>{{ message }}</div>
+      {% endfor %}
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>

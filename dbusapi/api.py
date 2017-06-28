@@ -23,8 +23,12 @@ def dbus_list_names():
     return dbus_call(".DBus", "ListNames")
 
 @api.dispatcher.add_method
-def dbus_introspect(name, path):
+def dbus_introspect_p(name, path):
     return dbus_call_p(name, path, "Introspect")
+
+@api.dispatcher.add_method
+def dbus_introspect(name):
+    return dbus_call(name, "Introspect")
 
 pm = ".PowerManagement"
 pm_kde_path = "/org/kde/Solid/PowerManagement"
@@ -34,4 +38,4 @@ def kde_brightness():
 
 @api.dispatcher.add_method
 def kde_set_brightness(value):
-    return dbus_call_p(pm, pm_kde_path + "/Actions/BrightnessControl", "setBrightness", value)
+    return dbus_call_p(pm, pm_kde_path + "/Actions/BrightnessControl", "setBrightness", int(value))

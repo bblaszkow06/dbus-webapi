@@ -1,0 +1,3 @@
+graft site/static
+graft site/templates
+
